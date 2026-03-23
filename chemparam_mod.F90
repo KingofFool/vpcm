@@ -28,7 +28,8 @@ integer, save :: i_co2, i_co, i_h2, i_h2o, i_o1d,        &
                  i_n2plus, i_hplus, i_h2oplus, i_nplus,  &
                  i_ohplus, i_cplus, i_noplus, i_h3oplus, &
                  i_hcoplus, i_hco2plus, i_elec,          &
-                 i_dco2plus, i_dcoplus, i_hdoplus, i_dplus
+                 i_dco2plus, i_dcoplus, i_hdoplus,       &
+                 i_dplus, i_odplus, i_h2doplus
 
 integer, save :: i_h2oliq, i_hdoliq, i_h2so4liq, i_hdso4liq
 
@@ -1585,6 +1586,8 @@ end subroutine cloud_ini
       i_dcoplus   = 0
       i_hdoplus   = 0
       i_dplus     = 0
+      i_odplus    = 0
+      i_h2doplus  = 0
 
       ! liquid
 
@@ -1947,6 +1950,16 @@ end subroutine cloud_ini
                print*,'dplus',i_dplus
                m_tr(i_dplus) = 2.00855
                type_tr(i_dplus) = 2
+            case('odplus')
+               i_odplus = i
+               print*,'odplus',i_odplus
+               m_tr(i_odplus) = 18.0134
+               type_tr(i_odplus) = 2
+            case('h2doplus')
+               i_h2doplus = i
+               print*,'h2doplus',i_h2doplus
+               m_tr(i_h2doplus) = 20.0214
+               type_tr(i_h2doplus) = 2
 
             ! liquid tracers (cl_scheme = 1)
 

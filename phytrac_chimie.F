@@ -139,7 +139,7 @@
 
            ! set number of reactions, depending on ion chemistry or not
 
-           nb_reaction_4_ion  = 99
+           nb_reaction_4_ion  = 106
            !nb_reaction_4_deut = 35 
     
            ! default numbers if no ion and no deuterium chemistry
@@ -201,6 +201,8 @@
                     trac(:,:,i_dcoplus) = trac(:,:,i_hcoplus)*0.032
                     trac(:,:,i_hdoplus) = trac(:,:,i_h2oplus)*0.032
                     trac(:,:,i_dplus) = trac(:,:,i_hplus)*0.032
+                    trac(:,:,i_odplus) = trac(:,:,i_ohplus)*0.032
+                    trac(:,:,i_h2doplus) = trac(:,:,i_h3oplus)*0.032
                  endif
  
 

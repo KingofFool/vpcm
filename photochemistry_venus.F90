@@ -3061,6 +3061,12 @@ if(ok_ionchem) then
    indice_4(nb_reaction_4) = z4spec(1.0, i_oplus, 1.0, i_hd, 1.0, i_ohplus, 1.0, i_d)
 
 !===========================================================
+!      di008: O+ + HD -> OD+ + H
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_oplus, 1.0, i_hd, 1.0, i_odplus, 1.0, i_h)
+
+!===========================================================
 !      di009: OH+ + HD -> H2O+ + D
 !===========================================================
 
@@ -3264,6 +3270,42 @@ if(ok_ionchem) then
 !===========================================================
    nb_reaction_4 = nb_reaction_4 + 1
    indice_4(nb_reaction_4) = z4spec(1.0, i_dplus, 1.0, i_h2o, 1.0, i_hdoplus, 1.0, i_h)
+
+!===========================================================
+!      di036: OD+ + O -> O2+ + D
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_odplus, 1.0, i_o, 1.0, i_o2plus, 1.0, i_d)
+
+!===========================================================
+!      di037: OD+ + CO2 -> DCO2+ + O
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_odplus, 1.0, i_co2, 1.0, i_dco2plus, 1.0, i_o)
+
+!===========================================================
+!      di038: OD+ + CO -> DCO+ + O
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_odplus, 1.0, i_co, 1.0, i_dcoplus, 1.0, i_o)
+
+!===========================================================
+!      di039: OD+ + NO -> NO+ + OD 
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_odplus, 1.0, i_no, 1.0, i_noplus, 1.0, i_od)
+
+!===========================================================
+!      di040: OD+ + H2 -> HDO+ + H 
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_odplus, 1.0, i_h2, 1.0, i_hdoplus, 1.0, i_h)
+
+!===========================================================
+!      di041: OD+ + O2 -> O2+ + OD
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_odplus, 1.0, i_o2, 1.0, i_o2plus, 1.0, i_od)
 
 end if   !ionchem.and.deutchem
 
@@ -6265,6 +6307,13 @@ real, dimension(nz) :: a001, a002, a003,                           &
          nb_reaction_4 = nb_reaction_4 + 1
          v_4(:,nb_reaction_4) = di007(:)
 
+!---     di008: O+ + HD -> OD+ + H
+
+         !Rate for i057: O+ + H2 -> OH+ + H, multiplied by 0.18?
+         di008(:) = i057(:) * 0.18
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di008(:)
+
 !---     di009: OH+ + HD -> H2O+ + D
 
          !Rate for i062: OH+ + H2 -> H2O+ + H, multiplied by 0.82
@@ -6496,6 +6545,42 @@ real, dimension(nz) :: a001, a002, a003,                           &
          di035(:) = i042(:)
          nb_reaction_4 = nb_reaction_4 + 1
          v_4(:,nb_reaction_4) = di035(:)
+
+!---     di036: OD+ + O -> O2+ + D
+         !Same rate as for i058: OH+ + O -> O2+ + H
+         di036(:) = i058(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di036(:)
+
+!---     di037: OD+ + CO2 -> DCO2+ + O
+         !Same rate as for i059: OH+ + CO2 -> HCO2+ + O
+         di037(:) = i059(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di037(:)
+
+!---     di038: OD+ + CO -> DCO+ + O
+         !Same rate as for i060: OH+ + CO -> HCO+ + O
+         di038(:) = i060(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di038(:)
+
+!---     di039: OD+ + NO -> NO+ + OD 
+         !Same rate as for i061: OH+ + NO -> NO+ + OH 
+         di039(:) = i061(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di039(:)
+
+!---     di040: OD+ + H2 -> HDO+ + H 
+         !Same rate as for i062: OH+ + H2 -> H2O+ + H 
+         di040(:) = i062(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di040(:)
+
+!---     di041: OD+ + O2 -> O2+ + OD
+         !Same rate as for i063: OH+ + O2 -> O2+ + OH
+         di041(:) = i063(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di041(:)
 
       endif   !ionchem.and.deutchem
 
