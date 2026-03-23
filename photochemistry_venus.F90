@@ -3241,6 +3241,24 @@ if(ok_ionchem) then
    nb_reaction_4 = nb_reaction_4 + 1
    indice_4(nb_reaction_4) = z4spec(1.0, i_hdoplus, 1.0, i_elec, 1.0, i_hd, 1.0, i_o)
 
+!===========================================================
+!      di033: D+ + O -> O+ + D
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_dplus, 1.0, i_o, 1.0, i_oplus, 1.0, i_d)
+
+!===========================================================
+!      di034: D+ + CO2 -> DCO+ + O
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_dplus, 1.0, i_co2, 1.0, i_dcoplus, 1.0, i_o)
+
+!===========================================================
+!      di035: D+ + H2O -> HDO+ + H
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_dplus, 1.0, i_h2o, 1.0, i_hdoplus, 1.0, i_h)
+
 end if   !ionchem.and.deutchem
 
 !===========================================================
@@ -6445,6 +6463,24 @@ real, dimension(nz) :: a001, a002, a003,                           &
          di032(:) = i049(:)
          nb_reaction_4 = nb_reaction_4 + 1
          v_4(:,nb_reaction_4) = di032(:)
+
+!---     di033: D+ + O -> O+ + D
+         !Same rate as for i024: H+ + O -> O+ + H
+         di033(:) = i024(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di033(:)
+
+!---     di034: D+ + CO2 -> DCO+ + O
+         !Same rate as for i033: H+ + CO2 -> HCO+ + O
+         di034(:) = i033(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di034(:)
+
+!---     di035: D+ + H2O -> HDO+ + H
+         !Same rate as for i042: H+ + H2O -> H2O+ + H
+         di035(:) = i042(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di035(:)
 
       endif   !ionchem.and.deutchem
 
