@@ -350,14 +350,15 @@ do iz = 1,nz
            c(iz,i_noplus)+c(iz,i_coplus)+c(iz,i_cplus)+c(iz,i_n2plus)+  &
            c(iz,i_nplus)+c(iz,i_hplus)+c(iz,i_hco2plus)+                &
            c(iz,i_hcoplus)+c(iz,i_h2oplus)+c(iz,i_h3oplus)+             &
-           c(iz,i_ohplus)+c(iz,i_dco2plus)+c(iz,i_dcoplus)+             & 
-           c(iz,i_hdoplus)+c(iz,i_dplus)) then
+           c(iz,i_ohplus)+c(iz,i_dco2plus)+c(iz,i_dcoplus)+             &
+           c(iz,i_hdoplus)+c(iz,i_dplus)+c(iz,i_odplus)+                &
+           c(iz,i_h2doplus) ) then
          c(iz,i_elec) = c(iz,i_co2plus)+c(iz,i_oplus)+c(iz,i_o2plus)+   &
               c(iz,i_noplus)+c(iz,i_coplus)+c(iz,i_cplus)+              &
               c(iz,i_n2plus)+c(iz,i_nplus)+c(iz,i_hplus)+               &
               c(iz,i_hco2plus)+c(iz,i_hcoplus)+c(iz,i_h2oplus)+         &
               c(iz,i_h3oplus)+c(iz,i_ohplus)+c(iz,i_dco2plus)+          & 
-              c(iz,i_dcoplus)+c(iz,i_hdoplus)+c(iz,i_dplus)
+              c(iz,i_dcoplus)+c(iz,i_hdoplus)+c(iz,i_dplus)+            & 
          !      write(*,*)'photochemistry/359'
          !      write(*,*)'Forcing charge neutrality at ilev,',ilev,' ig=',ig
       end if
