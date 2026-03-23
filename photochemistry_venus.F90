@@ -3068,6 +3068,12 @@ if(ok_ionchem) then
    indice_4(nb_reaction_4) = z4spec(1.0, i_ohplus, 1.0, i_hd, 1.0, i_h2oplus, 1.0, i_d)
 
 !===========================================================
+!      di010: OH+ + HD -> HDO+ + H
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_ohplus, 1.0, i_hd, 1.0, i_hdoplus, 1.0, i_h)
+
+!===========================================================
 !      di011: DCO2+ + e -> D + CO2
 !===========================================================
 
@@ -6267,6 +6273,15 @@ real, dimension(nz) :: a001, a002, a003,                           &
          di009(:) = i062(:) * 0.82
          nb_reaction_4 = nb_reaction_4 + 1
          v_4(:,nb_reaction_4) = di009(:)
+
+!---     di010: OH+ + HD -> HDO+ + H
+
+         !Rate for i062: OH+ + H2 -> H2O+ + H, multiplied by 0.18?
+         !(Langevin formula, see Krasnopolsky+2002)
+
+         di009(:) = i062(:) * 0.18
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di010(:)
 
 !---     di011: DCO2+ + e -> D + CO2
 
