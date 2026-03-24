@@ -139,7 +139,7 @@
 
            ! set number of reactions, depending on ion chemistry or not
 
-           nb_reaction_4_ion  = 106
+           nb_reaction_4_ion  = 117
            !nb_reaction_4_deut = 35 
     
            ! default numbers if no ion and no deuterium chemistry
