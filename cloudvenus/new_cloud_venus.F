@@ -422,7 +422,7 @@ c     ATTENTION ! DOIT ETRE COHERENT AVEC new_cloud_sedim !
  
       alpha = (1158.8*(T**3/10**9)-1620.1*(T**2/10**6)+794.84*
      &  (T/10**3)-161.04+2.9992*(10**9/T**3))/10**3
-      alpha = 1
+      alpha = EXP(alpha)
       IF (H2O.LT. 1e-30) THEN
         HDOCOND=0
       ELSE
