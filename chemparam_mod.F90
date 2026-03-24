@@ -1810,47 +1810,47 @@ end subroutine cloud_ini
             case('hd')
                i_hd = i
                print*,'hd',i_hd
-               m_tr(i_hd) = 3.022042
+               m_tr(i_hd) = 2.01588
                type_tr(i_hd) = 1
             case('d')
                i_d = i
                print*,'d',i_d
-               m_tr(i_d) = 2.00855
+               m_tr(i_d) = 1.00794
                type_tr(i_d) = 1
             case('od')
                i_od = i
                print*,'od',i_od
-               m_tr(i_od) = 18.0134
+               m_tr(i_od) = 17.0073
                type_tr(i_od) = 1
             case('do2')
                i_do2 = i
                print*,'do2',i_do2
-               m_tr(i_do2) = 34.0128
+               m_tr(i_do2) = 33.0067
                type_tr(i_do2) = 1
             case('hdo2')
                i_hdo2 = i
                print*,'hdo2',i_hdo2
-               m_tr(i_hdo2) = 35.0218
+               m_tr(i_hdo2) = 34.0218
                type_tr(i_hdo2) = 1
             case('hdo')
                i_hdo = i
                print*,'hdo',i_hdo
-               m_tr(i_hdo) = 19.0214
+               m_tr(i_hdo) = 18.0153
                type_tr(i_hdo) = 1
             case('hdso4')
                i_hdso4 = i
                print*,'hdso4',i_hdso4
-               m_tr(i_hdso4) = 99.084
+               m_tr(i_hdso4) = 98.078
                type_tr(i_hdso4) = 1
             case('dcl')
                i_dcl = i
                print*,'dcl',i_dcl
-               m_tr(i_dcl) = 37.4671
+               m_tr(i_dcl) = 36.461
                type_tr(i_dcl) = 1
             case('docl')
                i_docl = i
                print*,'docl',i_docl
-               m_tr(i_docl) = 53.4665
+               m_tr(i_docl) = 52.46
                type_tr(i_docl) = 1
 
             ! ions
@@ -1933,32 +1933,32 @@ end subroutine cloud_ini
             case('dco2plus')
                i_dco2plus = i
                print*,'dco2plus',i_dco2plus
-               m_tr(i_dco2plus) = 46.023
+               m_tr(i_dco2plus) = 45
                type_tr(i_dco2plus) = 2
             case('dcoplus')
                i_dcoplus = i
                print*,'dcoplus',i_dcoplus
-               m_tr(i_dcoplus) = 30.024
+               m_tr(i_dcoplus) = 29.0180
                type_tr(i_dcoplus) = 2
             case('hdoplus')
                i_hdoplus = i
                print*,'hdoplus',i_hdoplus
-               m_tr(i_hdoplus) = 19.0214
+               m_tr(i_hdoplus) = 18.0153
                type_tr(i_hdoplus) = 2
             case('dplus')
                i_dplus = i
                print*,'dplus',i_dplus
-               m_tr(i_dplus) = 2.00855
+               m_tr(i_dplus) = 1.00794
                type_tr(i_dplus) = 2
             case('odplus')
                i_odplus = i
                print*,'odplus',i_odplus
-               m_tr(i_odplus) = 18.0134
+               m_tr(i_odplus) = 17.0073
                type_tr(i_odplus) = 2
             case('h2doplus')
                i_h2doplus = i
                print*,'h2doplus',i_h2doplus
-               m_tr(i_h2doplus) = 20.0214
+               m_tr(i_h2doplus) = 19.0232
                type_tr(i_h2doplus) = 2
 
             ! liquid tracers (cl_scheme = 1)
@@ -1976,12 +1976,12 @@ end subroutine cloud_ini
             case('hdoliq')
                i_hdoliq = i
                print*,'hdoliq',i_hdoliq
-               m_tr(i_hdoliq) = 19.0214
+               m_tr(i_hdoliq) = 18.0153
                type_tr(i_hdoliq) = 3
             case('hdso4liq')
                i_hdso4liq = i
                print*,'hdso4liq',i_hdso4liq
-               m_tr(i_hdso4liq) = 99.084
+               m_tr(i_hdso4liq) = 98.078
                type_tr(i_hdso4liq) = 3
 
             ! liquid tracers (cl_scheme = 2)

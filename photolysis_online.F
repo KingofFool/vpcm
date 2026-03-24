@@ -384,21 +384,15 @@
 
       end do ! iw
  
-      do ilay = 1,nlayer
-         if (v_phot(ilay, j_h2o) <= 1.0e-30) then
-            ratio_phot(ilay) = 0.0
-         else
-            ratio_phot(ilay) =
-     $      (v_phot(ilay,j_hdo_od)+v_phot(ilay,j_hdo_d))
-     $      /v_phot(ilay, j_h2o)
-         endif
-      end do
- 
-      v_phot(:,j_hdso4) = v_phot(:,j_h2so4)*ratio_phot(:)
-      v_phot(:,j_hd)    = v_phot(:,j_h2)   *ratio_phot(:)
-      v_phot(:,j_do2)   = v_phot(:,j_ho2)  *ratio_phot(:)
-      v_phot(:,j_hdo2)  = v_phot(:,j_h2o2) *ratio_phot(:)
-      v_phot(:,j_docl)  = v_phot(:,j_hocl) *ratio_phot(:)
+      ratio_phot(:) = 1.0
+      v_phot(:,j_hdo_od) = v_phot(:,j_h2o)*ratio_phot(:)
+      v_phot(:,j_hdo_d)  = 0.
+      v_phot(:,j_hdso4)  = v_phot(:,j_h2so4)*ratio_phot(:)
+      v_phot(:,j_hd)     = v_phot(:,j_h2)*ratio_phot(:)
+      v_phot(:,j_do2)    = v_phot(:,j_ho2)*ratio_phot(:)
+      v_phot(:,j_hdo2)   = v_phot(:,j_h2o2)*ratio_phot(:)
+      v_phot(:,j_dcl)    = v_phot(:,j_hcl)*ratio_phot(:)
+      v_phot(:,j_docl)   = v_phot(:,j_hocl)*ratio_phot(:)
 
 !     eliminate small values
 
