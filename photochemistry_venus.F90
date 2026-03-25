@@ -359,6 +359,7 @@ do iz = 1,nz
               c(iz,i_hco2plus)+c(iz,i_hcoplus)+c(iz,i_h2oplus)+         &
               c(iz,i_h3oplus)+c(iz,i_ohplus)+c(iz,i_dco2plus)+          & 
               c(iz,i_dcoplus)+c(iz,i_hdoplus)+c(iz,i_dplus)+            & 
+              c(iz,i_odplus)+c(iz,i_h2doplus)
          !      write(*,*)'photochemistry/359'
          !      write(*,*)'Forcing charge neutrality at ilev,',ilev,' ig=',ig
       end if
@@ -3308,6 +3309,72 @@ if(ok_ionchem) then
    nb_reaction_4 = nb_reaction_4 + 1
    indice_4(nb_reaction_4) = z4spec(1.0, i_odplus, 1.0, i_o2, 1.0, i_o2plus, 1.0, i_od)
 
+!===========================================================
+!      di042: CO+ + D -> D+ + CO 
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_coplus, 1.0, i_d, 1.0, i_dplus, 1.0, i_co)
+
+!===========================================================
+!      di043: O+ + D -> D+ + O 
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_oplus, 1.0, i_d, 1.0, i_dplus, 1.0, i_o)
+
+!===========================================================
+!      di044: H2O+ + HD -> H2DO+ + H
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_h2oplus, 1.0, i_hd, 1.0, i_h2doplus, 1.0, i_h)
+
+!===========================================================
+!      di045: HDO+ + H2O -> H2DO+ + OH
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_hdoplus, 1.0, i_h2o, 1.0, i_h2doplus, 1.0, i_oh)
+
+!===========================================================
+!      di046: H2DO+ + e- -> HDO + H
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_h2doplus, 1.0, i_elec, 1.0, i_hdo, 1.0, i_h)
+
+!===========================================================
+!      di047: H2DO+ + e- -> H2O + D
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_h2doplus, 1.0, i_elec, 1.0, i_h2o, 1.0, i_d)
+
+!===========================================================
+!      di048: H2DO+ + e- -> OH + HD
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_h2doplus, 1.0, i_elec, 1.0, i_oh, 1.0, i_hd)
+
+!===========================================================
+!      di049: H2DO+ + e- -> OD + H2
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_h2doplus, 1.0, i_elec, 1.0, i_od, 1.0, i_h2)
+
+!===========================================================
+!      di050: H2DO+ + e- -> OD + H + H
+!===========================================================
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(1.0, i_h2doplus, 1.0, i_elec, 1.0, i_od, 2.0, i_h)
+
+!===========================================================
+!      di051: H2DO+ + e- -> OH + D + H
+!===========================================================
+! 0.5 H2DO+ + 0.5e- -> OH
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(0.5, i_h2doplus, 0.5, i_elec, 1.0, i_oh, 0.0, i_dummy)
+
+! 0.5 H2DO+ + 0.5e- -> D + H
+   nb_reaction_4 = nb_reaction_4 + 1
+   indice_4(nb_reaction_4) = z4spec(0.5, i_h2doplus, 0.5, i_elec, 1.0, i_d, 1.0, i_h)
+
+
 end if   !ionchem.and.deutchem
 
 !===========================================================
@@ -3682,6 +3749,8 @@ real, dimension(nz) :: a001, a002, a003,                           &
                        di025, di026, di027, di028, di029, di030,   &
                        di031, di032, di033, di034, di035, di036,   &
                        di037, di038, di039, di040, di041, di042,   &
+                       di043, di044, di045, di046, di047, di048,   &
+                       di049, di050, di051, di052, di053, di054,   &
                        i062, i063,                                 &
                        j001, j002                                  
 !----------------------------------------------------------------------
@@ -6329,7 +6398,7 @@ real, dimension(nz) :: a001, a002, a003,                           &
          !Rate for i062: OH+ + H2 -> H2O+ + H, multiplied by 0.18?
          !(Langevin formula, see Krasnopolsky+2002)
 
-         di009(:) = i062(:) * 0.18
+         di010(:) = i062(:) * 0.18
          nb_reaction_4 = nb_reaction_4 + 1
          v_4(:,nb_reaction_4) = di010(:)
 
@@ -6582,6 +6651,68 @@ real, dimension(nz) :: a001, a002, a003,                           &
          di041(:) = i063(:)
          nb_reaction_4 = nb_reaction_4 + 1
          v_4(:,nb_reaction_4) = di041(:)
+
+!---     di042: CO+ + D -> D+ + CO 
+         !Same rate as for i022: CO+ + H -> H+ + CO 
+         di042(:) = i022(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di042(:)
+
+!---     di043: O+ + D -> D+ + O 
+         !Same rate as for i023: O+ + H -> H+ + O 
+         di043(:) = i023(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di043(:)
+
+!---     di044: H2O+ + HD -> H2DO+ + H
+         !Same rate as for i051: H2O+ + H2 -> H3O+ + H 
+         di044(:) = i051(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di044(:)
+
+!---     di045: HDO+ + H2O -> H2DO+ + OH
+         !Same rate as for i050: H2O+ + H2O -> H3O+ + OH 
+         di045(:) = i050(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di045(:)
+
+!---     di046: H2DO+ + e- -> HDO + H
+         !Branch of i054: H3O+ + e- -> H2O + H (2/3 stat weight)
+         di046(:) = i054(:) * 0.6667
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di046(:)
+
+!---     di047: H2DO+ + e- -> H2O + D
+         !Branch of i054: H3O+ + e- -> H2O + H (1/3 stat weight)
+         di047(:) = i054(:) * 0.3333
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di047(:)
+
+!---     di048: H2DO+ + e- -> OH + HD
+         !Branch of i055: H3O+ + e- -> OH + H2 (2/3 stat weight)
+         di048(:) = i055(:) * 0.6667
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di048(:)
+
+!---     di049: H2DO+ + e- -> OD + H2
+         !Branch of i055: H3O+ + e- -> OH + H2 (1/3 stat weight)
+         di049(:) = i055(:) * 0.3333
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di049(:)
+
+!---     di050: H2DO+ + e- -> OD + H + H
+         !Branch of i053: H3O+ + e- -> OH + H + H (1/3 stat weight)
+         di050(:) = i053(:) * 0.3333
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di050(:)
+
+!---     di051: H2DO+ + e- -> OH + D + H
+         !Branch of i053: H3O+ + e- -> OH + H + H (2/3 stat weight, splitted in 2)
+         di051(:) = i053(:) * 0.6667
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di051(:)
+         nb_reaction_4 = nb_reaction_4 + 1
+         v_4(:,nb_reaction_4) = di051(:)
 
       endif   !ionchem.and.deutchem
 
